@@ -14,7 +14,7 @@ for fname in os.listdir(DATA_DIR):
 
 print(f"Loaded {len(signals)} signals for training.")
 
-P = 10
+P = 50
 
 # fit autoregressive model of order p
 def fit_ar(signals, p):

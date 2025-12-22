@@ -1,0 +1,202 @@
+[
+  {
+    "filename": "Scannable Document 10.png",
+    "length": 3031,
+    "detrend_slope": 0.0008529900431619472,
+    "detrend_intercept": 181.51249191572316,
+    "normalise_mean": -2.250481776079499e-14,
+    "normalise_std": 12.020662503583022
+  },
+  {
+    "filename": "Scannable Document 11.png",
+    "length": 2937,
+    "detrend_slope": -0.0028570015654813276,
+    "detrend_intercept": 128.66090282546054,
+    "normalise_mean": -9.29003781177659e-15,
+    "normalise_std": 13.91478461129923
+  },
+  {
+    "filename": "Scannable Document 12.png",
+    "length": 2917,
+    "detrend_slope": -0.030235577303019207,
+    "detrend_intercept": 135.97166490564413,
+    "normalise_mean": -7.794778040563321e-15,
+    "normalise_std": 8.864453636586166
+  },
+  {
+    "filename": "Scannable Document 13.png",
+    "length": 2898,
+    "detrend_slope": -0.023918095202292683,
+    "detrend_intercept": 127.27353388488442,
+    "normalise_mean": -5.649035414738684e-15,
+    "normalise_std": 12.07567483509814
+  },
+  {
+    "filename": "Scannable Document 14.png",
+    "length": 2831,
+    "detrend_slope": -0.02379656345546425,
+    "detrend_intercept": 141.72596310987115,
+    "normalise_mean": 1.9275761959157787e-14,
+    "normalise_std": 12.046333709550828
+  },
+  {
+    "filename": "Scannable Document 15.png",
+    "length": 2947,
+    "detrend_slope": -0.01675090000637747,
+    "detrend_intercept": 162.21478489006734,
+    "normalise_mean": 1.975149674701982e-14,
+    "normalise_std": 12.615687471618658
+  },
+  {
+    "filename": "Scannable Document 16.png",
+    "length": 2967,
+    "detrend_slope": -0.046698801694099054,
+    "detrend_intercept": 185.4981837825971,
+    "normalise_mean": -1.2568009023488391e-14,
+    "normalise_std": 9.149483735000812
+  },
+  {
+    "filename": "Scannable Document 17.png",
+    "length": 3052,
+    "detrend_slope": -0.010685732515601861,
+    "detrend_intercept": 125.94412662576346,
+    "normalise_mean": -3.873994470199236e-15,
+    "normalise_std": 14.812874147130374
+  },
+  {
+    "filename": "Scannable Document 18.png",
+    "length": 3106,
+    "detrend_slope": -0.02544117135154682,
+    "detrend_intercept": 168.6215319193456,
+    "normalise_mean": 2.049730493371055e-14,
+    "normalise_std": 10.395352520954942
+  },
+  {
+    "filename": "Scannable Document 19.png",
+    "length": 3050,
+    "detrend_slope": -0.006964969133047544,
+    "detrend_intercept": 204.18276729932003,
+    "normalise_mean": -3.131047333972376e-15,
+    "normalise_std": 12.331923396498654
+  },
+  {
+    "filename": "Scannable Document 2.png",
+    "length": 2649,
+    "detrend_slope": -0.015778161860932786,
+    "detrend_intercept": 119.26091463488768,
+    "normalise_mean": -1.459174210092467e-14,
+    "normalise_std": 9.980742780203022
+  },
+  {
+    "filename": "Scannable Document 20.png",
+    "length": 3004,
+    "detrend_slope": -0.0108972182372185,
+    "detrend_intercept": 164.72642437964737,
+    "normalise_mean": 6.206604988796614e-15,
+    "normalise_std": 14.188738271406745
+  },
+  {
+    "filename": "Scannable Document 21.png",
+    "length": 2977,
+    "detrend_slope": -0.012508830139908467,
+    "detrend_intercept": 176.3733111736808,
+    "normalise_mean": 2.1385498530099087e-15,
+    "normalise_std": 15.80629889755331
+  },
+  {
+    "filename": "Scannable Document 22.png",
+    "length": 2925,
+    "detrend_slope": -0.02562231663241093,
+    "detrend_intercept": 177.65750787017302,
+    "normalise_mean": -2.176568517063418e-15,
+    "normalise_std": 15.745211945678903
+  },
+  {
+    "filename": "Scannable Document 23.png",
+    "length": 2870,
+    "detrend_slope": -0.004823051800479936,
+    "detrend_intercept": 224.49655821055245,
+    "normalise_mean": -4.436559520843552e-15,
+    "normalise_std": 10.149372979465255
+  },
+  {
+    "filename": "Scannable Document 24.png",
+    "length": 3018,
+    "detrend_slope": -0.028165999618203336,
+    "detrend_intercept": 204.74478633788829,
+    "normalise_mean": -6.027135200615827e-16,
+    "normalise_std": 16.438520293243943
+  },
+  {
+    "filename": "Scannable Document 25.png",
+    "length": 3017,
+    "detrend_slope": -0.031163539362237147,
+    "detrend_intercept": 270.0148882270981,
+    "normalise_mean": -1.4469919020583545e-14,
+    "normalise_std": 14.201297545017885
+  },
+  {
+    "filename": "Scannable Document 3.png",
+    "length": 2621,
+    "detrend_slope": 8.524974172817566e-05,
+    "detrend_intercept": 101.03433921795046,
+    "normalise_mean": -1.0496838889214453e-14,
+    "normalise_std": 6.298990327666412
+  },
+  {
+    "filename": "Scannable Document 4.png",
+    "length": 2638,
+    "detrend_slope": -0.006615053244045279,
+    "detrend_intercept": 115.56061488568771,
+    "normalise_mean": 9.998235917897999e-15,
+    "normalise_std": 6.187945016847697
+  },
+  {
+    "filename": "Scannable Document 5.png",
+    "length": 2265,
+    "detrend_slope": -0.006663227329180871,
+    "detrend_intercept": 107.31194375500786,
+    "normalise_mean": -2.4092574881402073e-15,
+    "normalise_std": 6.878784070861839
+  },
+  {
+    "filename": "Scannable Document 6.png",
+    "length": 2936,
+    "detrend_slope": -0.004051474430488703,
+    "detrend_intercept": 141.10263010655746,
+    "normalise_mean": 7.124788195087653e-15,
+    "normalise_std": 12.304378583124151
+  },
+  {
+    "filename": "Scannable Document 7.png",
+    "length": 2922,
+    "detrend_slope": -0.01664731983420009,
+    "detrend_intercept": 134.05304617154212,
+    "normalise_mean": 3.112575981426859e-15,
+    "normalise_std": 9.251696442998046
+  },
+  {
+    "filename": "Scannable Document 8.png",
+    "length": 2972,
+    "detrend_slope": -0.022599661235646246,
+    "detrend_intercept": 128.6937182586515,
+    "normalise_mean": -6.120421950019706e-16,
+    "normalise_std": 9.587964626572747
+  },
+  {
+    "filename": "Scannable Document 9.png",
+    "length": 2839,
+    "detrend_slope": -0.010559636366264233,
+    "detrend_intercept": 74.62204740529582,
+    "normalise_mean": -1.6017870760354494e-15,
+    "normalise_std": 13.555372795240123
+  },
+  {
+    "filename": "Scannable Document.png",
+    "length": 2563,
+    "detrend_slope": -0.014631649316917272,
+    "detrend_intercept": 109.9744845518542,
+    "normalise_mean": 9.935954603840027e-15,
+    "normalise_std": 13.875628345865167
+  }
+]

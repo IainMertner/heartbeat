@@ -3,7 +3,7 @@ import json
 import numpy as np
 
 ## generate synthetic time series from trained AR model
-def generate_series(phi, noise_std, length=3000, seed=None):
+def generate_series(phi, alpha, sigma_eta, length=3000, seed=None):
     # get model order
     p = len(phi)
     # initialise state
@@ -19,15 +19,16 @@ def generate_series(phi, noise_std, length=3000, seed=None):
     
     out = np.zeros(length, dtype=np.float64)
 
+    epsilon = 0.0
+
     ## generate series
     for t in range(length):
+        epsilon = alpha * epsilon + np.random.normal(0.0, sigma_eta)
         # compute next value
-        next_val = float(phi @ state) + np.random.normal(0.0, noise_std)
-        # store output
-        out[t] = next_val
-        # update state
+        x = np.dot(phi, state) + epsilon
         state[1:] = state[:-1]
-        state[0] = next_val
+        state[0] = x
+        out[t] = x
     
     return out
 
@@ -46,18 +47,26 @@ for fname in os.listdir(DATA_DIR):
 
 sigma = np.random.choice(sigmas)
 
-## load AR model
+## load AR(p) model
 
 MODEL_PATH = "output/ar_model.json"
 
 with open(MODEL_PATH, "r") as f:
     model = json.load(f)
     phi = np.array(model["phi"])
-    noise_std = model["noise_std"]
+
+## load AR(1) residuals model
+
+MODEL_PATH = "output/ar1_residuals_model.json"
+
+with open(MODEL_PATH, "r") as f:
+    model = json.load(f)
+    alpha = np.array(model["alpha"])
+    sigma_eta = model["sigma_eta"]
 
 ## generate synthetic series
 
-generated_series_norm = generate_series(phi, noise_std, length=3000)
+generated_series_norm = generate_series(phi, alpha, sigma_eta, length=3000)
 print("generated_norm std:", generated_series_norm.std())
 print("generated_norm min/max:", generated_series_norm.min(), generated_series_norm.max())
 generated_series = generated_series_norm * sigma

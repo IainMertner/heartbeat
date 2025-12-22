@@ -2,19 +2,11 @@ import os
 import json
 import numpy as np
 
-DATA_DIR = "output/processed"
+from load_signals import load_signals
 
-signals = []
+signals = load_signals()
 
-for fname in os.listdir(DATA_DIR):
-    if fname.endswith("_signal.npy"):
-        path = os.path.join(DATA_DIR, fname)
-        signal = np.load(path)
-        signals.append(signal)
-
-print(f"Loaded {len(signals)} signals for training.")
-
-P = 50
+P = 50  # AR model order
 
 # fit autoregressive model of order p
 def fit_ar(signals, p):

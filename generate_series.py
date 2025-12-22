@@ -8,20 +8,25 @@ def generate_series(phi, noise_std, length=3000, seed=None):
     p = len(phi)
     # initialise state
     if seed is None:
-        state = np.zeros(p)
+        state = np.zeros(p, dtype=np.float64)
     else:
-        seed = np.asarray(seed)
-        state = seed[-p:] if len(seed) >= p else np.pad(seed, (p - len(seed), 0))
+        seed = np.asarray(seed, dtype=np.float64).ravel()
+        if len(seed) >= p:
+            state = seed[-1:-(p+1):-1].copy()
+        else:
+            padded = np.pad(seed, (p - len(seed), 0))
+            state = padded[-1:-(p+1):-1].copy()
     
-    out = np.zeros(length)
+    out = np.zeros(length, dtype=np.float64)
+
     ## generate series
     for t in range(length):
         # compute next value
-        next_val = np.dot(phi, state) + np.random.normal(0, noise_std)
+        next_val = float(phi @ state) + np.random.normal(0.0, noise_std)
         # store output
         out[t] = next_val
         # update state
-        state = np.roll(state, 1)
+        state[1:] = state[:-1]
         state[0] = next_val
     
     return out
@@ -52,7 +57,9 @@ with open(MODEL_PATH, "r") as f:
 
 ## generate synthetic series
 
-generated_series_norm = generate_series(phi, noise_std=sigma, length=3000)
+generated_series_norm = generate_series(phi, noise_std, length=3000)
+print("generated_norm std:", generated_series_norm.std())
+print("generated_norm min/max:", generated_series_norm.min(), generated_series_norm.max())
 generated_series = generated_series_norm * sigma
 
 ## save generated series

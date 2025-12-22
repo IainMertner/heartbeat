@@ -86,5 +86,5 @@ for fname in sorted(os.listdir(IMAGE_DIR)):
     results.append(metadata)
 
 # save summary metadata
-with open(os.path.join(OUTPUT_DIR, "summary_metadata.json"), "w") as f:
+with open(os.path.join(OUTPUT_DIR, "metadata_summary.json"), "w") as f:
     json.dump(results, f, indent=2)

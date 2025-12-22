@@ -1,4 +1,5 @@
 import os
+import json
 import numpy as np
 
 DATA_DIR = "output/processed"
@@ -41,5 +42,10 @@ def fit_ar(signals, p):
 
 phi, noise_std = fit_ar(signals, P)
 
-print("AR coefficients:", phi)
-print("Estimated noise standard deviation:", noise_std)
+model = {
+    "phi": phi.tolist(),
+    "noise_std": float(noise_std)
+    }
+
+with open("output/ar_model.json", "w") as f:
+    json.dump(model, f, indent=2)

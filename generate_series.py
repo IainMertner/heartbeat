@@ -3,7 +3,7 @@ import json
 import numpy as np
 
 ## generate synthetic time series from trained AR model
-def generate_series(phi, noise_std, length=2000, seed=None):
+def generate_series(phi, noise_std, length=3000, seed=None):
     # get model order
     p = len(phi)
     # initialise state
@@ -52,7 +52,7 @@ with open(MODEL_PATH, "r") as f:
 
 ## generate synthetic series
 
-generated_series_norm = generate_series(phi, noise_std=sigma, length=2000)
+generated_series_norm = generate_series(phi, noise_std=sigma, length=3000)
 generated_series = generated_series_norm * sigma
 
 ## save generated series

@@ -1,7 +1,7 @@
 import json
 import numpy as np
 
-from utils.resource_path import resource_path
+from scripts.utils.resource_path import resource_path
 
 # fit autoregressive model of order p
 def train_ar_model(signals, p):

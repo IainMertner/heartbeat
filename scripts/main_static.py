@@ -1,11 +1,11 @@
 import numpy as np
 
-from utils.load_signals import load_signals
-from utils.get_sigma import get_sigma
-from train_ar_model import train_ar_model
-from fit_ar1_residuals import compute_residuals, fit_ar1_residuals
-from generate_series import generate_series, process_series
-from visualise import render_line_image, next_available_filename, save_image
+from scripts.utils.load_signals import load_signals
+from scripts.utils.get_sigma import get_sigma
+from scripts.train_ar_model import train_ar_model
+from scripts.fit_ar1_residuals import compute_residuals, fit_ar1_residuals
+from scripts.generate_series import generate_series, process_series
+from scripts.visualise import render_line_image, next_available_filename, save_image
 
 signals = load_signals()
 

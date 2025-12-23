@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from scipy import stats
 
-from utils.resource_path import resource_path
+from scripts.utils.resource_path import resource_path
 
 ### config
 

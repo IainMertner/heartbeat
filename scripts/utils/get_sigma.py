@@ -2,7 +2,7 @@ import os
 import json
 import numpy as np
 
-from utils.resource_path import resource_path
+from scripts.utils.resource_path import resource_path
 
 ## load normalisation stds from metadata
 def get_sigma():

@@ -1,7 +1,7 @@
 import numpy as np
 import json
 
-from utils.resource_path import resource_path
+from scripts.utils.resource_path import resource_path
 
 def compute_residuals(signals, phi):
     all_residuals = []

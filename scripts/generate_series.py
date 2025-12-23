@@ -1,7 +1,7 @@
 import numpy as np
 
-from utils.envelopes import extract_envelope, sample_envelope
-from utils.resource_path import resource_path
+from scripts.utils.envelopes import extract_envelope, sample_envelope
+from scripts.utils.resource_path import resource_path
 
 ### generate synthetic time series from trained AR model
 def generate_series(phi, alpha, sigma_eta, length=2000, seed=None):

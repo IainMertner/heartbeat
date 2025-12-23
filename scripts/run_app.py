@@ -1,16 +1,16 @@
+import numpy as np
+import pygame
+import pygame._sdl2 as sdl2
+
+from scripts.utils.load_signals import load_signals
+from scripts.utils.scroll_buffer import ScrollBuffer
+from scripts.utils.get_sigma import get_sigma
+from scripts.utils.generators import ARGenerator, EnvelopeGenerator, ThicknessGenerator
+from scripts.train_ar_model import train_ar_model
+from scripts.utils.envelopes import extract_envelope
+from scripts.generate_col import ColumnGenerator
+
 def run_app():
-
-    import numpy as np
-    import pygame
-    import pygame._sdl2 as sdl2
-
-    from utils.load_signals import load_signals
-    from utils.scroll_buffer import ScrollBuffer
-    from utils.get_sigma import get_sigma
-    from utils.generators import ARGenerator, EnvelopeGenerator, ThicknessGenerator
-    from train_ar_model import train_ar_model
-    from utils.envelopes import extract_envelope
-    from generate_col import ColumnGenerator
 
     signals = load_signals()
 

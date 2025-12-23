@@ -2,8 +2,8 @@ import os
 from PIL import Image
 import numpy as np
 
-from utils.pen_stroke import generate_thickness, draw_col
-from utils.resource_path import resource_path
+from scripts.utils.pen_stroke import generate_thickness, draw_col
+from scripts.utils.resource_path import resource_path
 
 ## render series as line image
 def render_line_image(series, height=300):

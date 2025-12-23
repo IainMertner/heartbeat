@@ -38,7 +38,7 @@ class EnvelopeGenerator:
         return value
     
 class ThicknessGenerator:
-    def __init__(self, mean=2.0, jitter=0.6, smooth=30):
+    def __init__(self, mean=2.0, jitter=0.2, smooth=50):
         raw = mean + np.random.normal(0.0, jitter, size=500)
         self.thickness = gaussian_filter1d(raw, sigma=smooth)
         self.thickness = np.clip(self.thickness, 0.5, None)

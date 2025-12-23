@@ -8,13 +8,14 @@ from utils.get_sigma import get_sigma
 from utils.generators import ARGenerator, EnvelopeGenerator, ThicknessGenerator
 from train_ar_model import train_ar_model
 from utils.envelopes import extract_envelope
-from generate_incremental import generate_col
+from generate_col import ColumnGenerator
 
 signals = load_signals()
 
 P = 50
 HEIGHT = 300
-WIDTH = 800
+WIDTH = 1200
+MAX_STEP = 2.0
 
 # get amplitude from training data
 amp = get_sigma()
@@ -34,11 +35,12 @@ buffer = ScrollBuffer(HEIGHT, WIDTH)
 ar_gen = ARGenerator(phi, noise_std)
 env_gen = EnvelopeGenerator(envelopes)
 thick_gen = ThicknessGenerator()
+col_gen = ColumnGenerator(ar_gen, env_gen, thick_gen, HEIGHT, amp, MAX_STEP)
 
 ### run generation loop and render
 pygame.init()
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 clock = pygame.time.Clock()
 
 running = True
@@ -49,7 +51,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     # generate next column
-    col = generate_col(ar_gen, env_gen, thick_gen, HEIGHT, amp)
+    col = col_gen.step()
     # append to buffer
     buffer.append_col(col)
     # convert to rgb

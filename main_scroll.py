@@ -15,7 +15,8 @@ signals = load_signals()
 P = 50
 HEIGHT = 300
 WIDTH = 1200
-MAX_STEP = 2.0
+MAX_STEP = 2.5
+MAX_ACCEL = 0.5
 
 # get amplitude from training data
 amp = get_sigma()

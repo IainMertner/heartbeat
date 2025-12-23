@@ -32,7 +32,7 @@ def render_col(height, y_offset, thickness):
         if 0 <= yy < height:
             intensity = np.exp(-(dy**2) / denom)
             intensity *= np.random.uniform(0.85, 1.0) # paper grain
-            col[yy] = min(col[yy], int(255 - 150 * intensity))
+            col[yy] = min(col[yy], int(255 - 175 * intensity))
     
     return col
 

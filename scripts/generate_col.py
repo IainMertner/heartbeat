@@ -1,6 +1,6 @@
 import numpy as np
 
-from scripts.visualise import render_col
+from scripts.render_col import render_col
 
 ## generate single column of image
 class ColumnGenerator:

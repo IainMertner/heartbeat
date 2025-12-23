@@ -1,4 +1,3 @@
-import os
 import json
 import numpy as np
 
@@ -9,7 +8,7 @@ signals = load_signals()
 P = 50  # AR model order
 
 # fit autoregressive model of order p
-def fit_ar(signals, p):
+def train_ar_model(signals, p):
     X = []
     y = []
 
@@ -30,14 +29,11 @@ def fit_ar(signals, p):
     residuals = y - X @ phi
     noise_std = residuals.std()
 
-    return phi, noise_std
+    model = {
+        "phi": phi.tolist()
+        }
 
-phi, noise_std = fit_ar(signals, P)
+    with open("output/ar_model.json", "w") as f:
+        json.dump(model, f, indent=2)
 
-model = {
-    "phi": phi.tolist(),
-    "noise_std": float(noise_std)
-    }
-
-with open("output/ar_model.json", "w") as f:
-    json.dump(model, f, indent=2)
+    return model

@@ -2,8 +2,6 @@ import os
 from PIL import Image
 import numpy as np
 
-generated_series = np.load("output/generated_series.npy")
-
 ## render series as line image
 def render_line_image(series, height=300, margin=20, stroke_halfwidth=1, bg_colour=255, fg_colour=0):
     series = np.asarray(series)
@@ -24,8 +22,6 @@ def render_line_image(series, height=300, margin=20, stroke_halfwidth=1, bg_colo
     
     return img
 
-img = render_line_image(generated_series)
-
 ## find next available filename
 def next_available_filename(base, ext, directory="."):
     i = 1
@@ -36,7 +32,8 @@ def next_available_filename(base, ext, directory="."):
             return path
         i += 1
 
-# save image
-path = next_available_filename(base="generated_series", ext=".png", directory="output")
-img.save(path)
-print(f"Generated series image saved to {path}.")
+## save image
+def save_image(img):
+    path = next_available_filename(base="generated_series", ext=".png", directory="output")
+    img.save(path)
+    print(f"Generated series image saved to {path}.")

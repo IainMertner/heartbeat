@@ -2,7 +2,7 @@ import os
 import json
 import numpy as np
 
-from load_signals import load_signals
+from utils.load_signals import load_signals
 from train_ar_model import train_ar_model
 from fit_ar1_residuals import compute_residuals, fit_ar1_residuals
 from generate_series import generate_series, process_series

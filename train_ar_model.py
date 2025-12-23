@@ -1,12 +1,6 @@
 import json
 import numpy as np
 
-from load_signals import load_signals
-
-signals = load_signals()
-
-P = 50  # AR model order
-
 # fit autoregressive model of order p
 def train_ar_model(signals, p):
     X = []

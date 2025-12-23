@@ -2,23 +2,21 @@ import os
 from PIL import Image
 import numpy as np
 
+from utils.pen_stroke import generate_thickness, draw_col
+
 ## render series as line image
-def render_line_image(series, height=300, margin=20, stroke_halfwidth=1, bg_colour=255, fg_colour=0):
-    series = np.asarray(series)
+def render_line_image(series, height=300):
     width = len(series)
 
-    img = Image.new("L", (width, height), color=bg_colour)
+    img = Image.new("L", (width, height), color=255)
     pixels = img.load()
 
     y0 = height // 2
+    thickness = generate_thickness(width)
 
     for x in range(width):
         y = int(round(y0 + series[x]))
-
-        for dy in range(-stroke_halfwidth, stroke_halfwidth + 1):
-            yy = y + dy
-            if margin <= yy < height - margin:
-                pixels[x, yy] = fg_colour
+        draw_col(pixels, x, y, thickness[x], height)
     
     return img
 

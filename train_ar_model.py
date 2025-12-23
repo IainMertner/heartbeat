@@ -24,7 +24,8 @@ def train_ar_model(signals, p):
     noise_std = residuals.std()
 
     model = {
-        "phi": phi.tolist()
+        "phi": phi.tolist(),
+        "noise_std": float(noise_std)
         }
 
     with open("output/ar_model.json", "w") as f:

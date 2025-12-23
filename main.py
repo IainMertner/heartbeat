@@ -1,8 +1,7 @@
-import os
-import json
 import numpy as np
 
 from utils.load_signals import load_signals
+from utils.get_sigma import get_sigma
 from train_ar_model import train_ar_model
 from fit_ar1_residuals import compute_residuals, fit_ar1_residuals
 from generate_series import generate_series, process_series
@@ -24,15 +23,7 @@ ar1_residuals_model = fit_ar1_residuals(residuals)
 alpha = np.array(ar1_residuals_model["alpha"])
 sigma_eta = ar1_residuals_model["sigma_eta"]
 
-# load normalisation stds from metadata
-sigmas = []
-for fname in os.listdir("output/processed"):
-    if fname.endswith("_metadata.json"):
-        path = os.path.join("output/processed", fname)
-        with open(path, "r") as f:
-            metadata = json.load(f)
-            sigmas.append(metadata["normalise_std"])
-sigma = np.random.choice(sigmas)
+sigma = get_sigma()
 
 ## generate synthetic series
 generated_series_norm = generate_series(phi, alpha, sigma_eta, length=length)

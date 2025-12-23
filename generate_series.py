@@ -35,7 +35,7 @@ def generate_series(phi, alpha, sigma_eta, length=2000, seed=None):
 def process_series(signals, generated_series_norm, sigma):
     # get envelopes
     envelopes = [extract_envelope(signal, sigma=130) for signal in signals]
-    # apply envelope
+    # sample and apply envelope
     env = sample_envelope(envelopes, length=len(generated_series_norm))
     generated_series_mod = generated_series_norm * env
     # print stats

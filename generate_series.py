@@ -1,6 +1,7 @@
 import numpy as np
 
 from utils.envelopes import extract_envelope, sample_envelope
+from utils.resource_path import resource_path
 
 ### generate synthetic time series from trained AR model
 def generate_series(phi, alpha, sigma_eta, length=2000, seed=None):
@@ -45,7 +46,7 @@ def process_series(signals, generated_series_norm, sigma):
     generated_series = generated_series_mod * sigma
 
     ## save generated series
-    OUTPUT_PATH = "output/generated_series.npy"
+    OUTPUT_PATH = resource_path("output/generated_series.npy")
     np.save(OUTPUT_PATH, generated_series)
     print(f"Generated synthetic series saved to {OUTPUT_PATH}.")
 

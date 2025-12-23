@@ -1,8 +1,10 @@
 import os
 import numpy as np
 
+from utils.resource_path import resource_path
+
 def load_signals():
-    DATA_DIR = "output/processed"
+    DATA_DIR = resource_path("output/processed")
 
     signals = []
 

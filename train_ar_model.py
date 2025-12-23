@@ -1,6 +1,8 @@
 import json
 import numpy as np
 
+from utils.resource_path import resource_path
+
 # fit autoregressive model of order p
 def train_ar_model(signals, p):
     X = []
@@ -28,7 +30,7 @@ def train_ar_model(signals, p):
         "noise_std": float(noise_std)
         }
 
-    with open("output/ar_model.json", "w") as f:
+    with open(resource_path("output/ar_model.json"), "w") as f:
         json.dump(model, f, indent=2)
 
     return model

@@ -1,6 +1,8 @@
 import numpy as np
 import json
 
+from utils.resource_path import resource_path
+
 def compute_residuals(signals, phi):
     all_residuals = []
     p = len(phi)
@@ -36,7 +38,7 @@ def fit_ar1_residuals(residuals):
         "sigma_eta": float(sigma_eta)
         }
 
-    with open("output/ar1_residuals_model.json", "w") as f:
+    with open(resource_path("output/ar1_residuals_model.json"), "w") as f:
         json.dump(model, f, indent=2)
     
     return model

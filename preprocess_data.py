@@ -4,10 +4,12 @@ import numpy as np
 from PIL import Image
 from scipy import stats
 
+from utils.resource_path import resource_path
+
 ### config
 
-IMAGE_DIR = "raw/cropped"
-OUTPUT_DIR = "output/processed"
+IMAGE_DIR = resource_path("raw/cropped")
+OUTPUT_DIR = resource_path("output/processed")
 EXTENSIONS = [".png"]
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)

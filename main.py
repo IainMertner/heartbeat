@@ -1,5 +1,5 @@
 import pygame
-import run_app
+from run_app import run_app
 
 if __name__ == "__main__":
     run_app()

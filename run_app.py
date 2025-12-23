@@ -1,78 +1,80 @@
-import numpy as np
-import pygame
-import pygame._sdl2 as sdl2
+def run_app():
 
-from utils.load_signals import load_signals
-from utils.scroll_buffer import ScrollBuffer
-from utils.get_sigma import get_sigma
-from utils.generators import ARGenerator, EnvelopeGenerator, ThicknessGenerator
-from train_ar_model import train_ar_model
-from utils.envelopes import extract_envelope
-from generate_col import ColumnGenerator
+    import numpy as np
+    import pygame
+    import pygame._sdl2 as sdl2
 
-signals = load_signals()
+    from utils.load_signals import load_signals
+    from utils.scroll_buffer import ScrollBuffer
+    from utils.get_sigma import get_sigma
+    from utils.generators import ARGenerator, EnvelopeGenerator, ThicknessGenerator
+    from train_ar_model import train_ar_model
+    from utils.envelopes import extract_envelope
+    from generate_col import ColumnGenerator
 
-P = 50
-HEIGHT = 300
-WIDTH = 1200
-MAX_STEP = 2.0
-MAX_ACCEL = 0.25
+    signals = load_signals()
 
-# get amplitude from training data
-amp = get_sigma()
+    P = 50
+    HEIGHT = 300
+    WIDTH = 1200
+    MAX_STEP = 2.0
+    MAX_ACCEL = 0.25
 
-## fit autoregressive model of order p
-ar_model = train_ar_model(signals, P)
-phi = np.array(ar_model["phi"])
-noise_std = ar_model["noise_std"]
+    # get amplitude from training data
+    amp = get_sigma()
 
-# get envelopes
-envelopes = [extract_envelope(signal, sigma=130) for signal in signals]
+    ## fit autoregressive model of order p
+    ar_model = train_ar_model(signals, P)
+    phi = np.array(ar_model["phi"])
+    noise_std = ar_model["noise_std"]
 
-## scrolling buffer to hold generated image
-buffer = ScrollBuffer(HEIGHT, WIDTH)
+    # get envelopes
+    envelopes = [extract_envelope(signal, sigma=130) for signal in signals]
 
-## generators
-ar_gen = ARGenerator(phi, noise_std)
-env_gen = EnvelopeGenerator(envelopes)
-thick_gen = ThicknessGenerator()
-col_gen = ColumnGenerator(ar_gen, env_gen, thick_gen, HEIGHT, amp, MAX_STEP)
+    ## scrolling buffer to hold generated image
+    buffer = ScrollBuffer(HEIGHT, WIDTH)
 
-### run generation loop and render
-pygame.init()
+    ## generators
+    ar_gen = ARGenerator(phi, noise_std)
+    env_gen = EnvelopeGenerator(envelopes)
+    thick_gen = ThicknessGenerator()
+    col_gen = ColumnGenerator(ar_gen, env_gen, thick_gen, HEIGHT, amp, MAX_STEP)
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-pygame.display.set_caption("Heartbeat")
+    ### run generation loop and render
+    pygame.init()
 
-window = sdl2.Window.from_display_module()
-window.maximize()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
+    pygame.display.set_caption("Heartbeat")
 
-clock = pygame.time.Clock()
+    window = sdl2.Window.from_display_module()
+    window.maximize()
 
-running = True
-## main loop
-while running:
-    for event in pygame.event.get():
-        # quit event
-        if event.type == pygame.QUIT:
-            running = False
-        # resize event
-        elif event.type == pygame.VIDEORESIZE:
-            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-            buffer.resize_width(event.w)
-    # generate next column
-    col = col_gen.step()
-    # append to buffer
-    buffer.append_col(col)
-    # convert to rgb
-    rgb = np.stack([buffer.img]*3, axis=-1)
-    ## render to screen
-    surf = pygame.surfarray.make_surface(rgb.swapaxes(0,1))
-    screen.fill((255, 255, 255))
-    y_offset = (screen.get_height() - buffer.img.shape[0]) // 2
-    screen.blit(surf, (0, y_offset))
-    pygame.display.flip()
-    # frame rate limit
-    clock.tick(300)
+    clock = pygame.time.Clock()
 
-pygame.quit()
+    running = True
+    ## main loop
+    while running:
+        for event in pygame.event.get():
+            # quit event
+            if event.type == pygame.QUIT:
+                running = False
+            # resize event
+            elif event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+                buffer.resize_width(event.w)
+        # generate next column
+        col = col_gen.step()
+        # append to buffer
+        buffer.append_col(col)
+        # convert to rgb
+        rgb = np.stack([buffer.img]*3, axis=-1)
+        ## render to screen
+        surf = pygame.surfarray.make_surface(rgb.swapaxes(0,1))
+        screen.fill((255, 255, 255))
+        y_offset = (screen.get_height() - buffer.img.shape[0]) // 2
+        screen.blit(surf, (0, y_offset))
+        pygame.display.flip()
+        # frame rate limit
+        clock.tick(300)
+
+    pygame.quit()

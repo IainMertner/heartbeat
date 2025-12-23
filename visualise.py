@@ -3,6 +3,7 @@ from PIL import Image
 import numpy as np
 
 from utils.pen_stroke import generate_thickness, draw_col
+from utils.resource_path import resource_path
 
 ## render series as line image
 def render_line_image(series, height=300):
@@ -48,6 +49,6 @@ def next_available_filename(base, ext, directory="."):
 
 ## save image
 def save_image(img):
-    path = next_available_filename(base="generated_series", ext=".png", directory="output")
+    path = resource_path(next_available_filename(base="generated_series", ext=".png", directory="output"))
     img.save(path)
     print(f"Generated series image saved to {path}.")

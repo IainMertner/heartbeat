@@ -9,6 +9,7 @@ from scripts.utils.generators import ARGenerator, EnvelopeGenerator, ThicknessGe
 from scripts.train_ar_model import train_ar_model
 from scripts.utils.envelopes import extract_envelope
 from scripts.generate_col import ColumnGenerator
+from scripts.utils.slider import SpeedSlider
 
 def run_app():
 
@@ -50,6 +51,18 @@ def run_app():
     window.maximize()
 
     clock = pygame.time.Clock()
+    
+    # # scrolling speed control (columns per second)
+    speed = 300.0        # initial speed
+    accumulator = 0.0
+    slider = SpeedSlider(
+        x=WIDTH/2,
+        y=HEIGHT*2,
+        w=300,
+        min_val=0,
+        max_val=600,
+        value=speed
+    )
 
     running = True
     ## main loop
@@ -62,10 +75,18 @@ def run_app():
             elif event.type == pygame.VIDEORESIZE:
                 screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 buffer.resize_width(event.w)
-        # generate next column
-        col = col_gen.step()
-        # append to buffer
-        buffer.append_col(col)
+            slider.handle_event(event)
+        # time since last frame (seconds)
+        dt = clock.get_time() / 1000.0
+        # update speed from slider
+        speed = slider.value
+        accumulator += speed * dt
+        while accumulator >= 1.0:
+            # generate next column
+            col = col_gen.step()
+            # append to buffer
+            buffer.append_col(col)
+            accumulator -= 1.0
         # convert to rgb
         rgb = np.stack([buffer.img]*3, axis=-1)
         ## render to screen
@@ -73,8 +94,9 @@ def run_app():
         screen.fill((255, 255, 255))
         y_offset = (screen.get_height() - buffer.img.shape[0]) // 2
         screen.blit(surf, (0, y_offset))
+        slider.draw(screen)
         pygame.display.flip()
         # frame rate limit
-        clock.tick(300)
+        clock.tick(60)
 
     pygame.quit()
